@@ -53,7 +53,6 @@
         .price { color: #00ff00; font-weight: bold; font-size: 18px; margin-bottom: 2px; }
         .tax-info { font-size: 10px; color: #ff4444; margin-bottom: 12px; font-weight: bold; text-transform: uppercase; }
         
-        /* BOTÃO COM LOADING */
         .btn-add-cart { 
             position: relative;
             display: flex;
@@ -65,9 +64,8 @@
             min-height: 40px;
         }
 
-        /* A BOLINHA CARREGANDO (SPINNER) */
         .loader {
-            display: none; /* Escondido por padrão */
+            display: none; 
             width: 18px;
             height: 18px;
             border: 3px solid #000;
@@ -88,7 +86,12 @@
 
         footer { background: #0a0a0a; padding: 30px 20px; border-top: 1px solid #1a1a1a; text-align: center; margin-top: 50px; font-size: 10px; color: #444; }
         
-        @media (max-width: 480px) { .product-grid { grid-template-columns: 1fr; } .img-container { height: 230px; } }
+        /* AJUSTE PARA NÃO ESPREMER EM CELULARES DIFERENTES */
+        @media (max-width: 600px) { 
+            .product-grid { grid-template-columns: 1fr; } /* Uma arma por linha em telas menores */
+            .img-container { height: 250px; } 
+            .header strong { font-size: 14px; } /* Diminui o texto do topo pra não quebrar */
+        }
     </style>
 </head>
 <body>
@@ -174,16 +177,10 @@
     function buyNow(btn, link) {
         const text = btn.querySelector('.btn-text');
         const loader = btn.querySelector('.loader');
-
-        // Esconde o texto e mostra a bolinha
         text.style.display = 'none';
         loader.style.display = 'block';
-        btn.style.pointerEvents = 'none'; // Trava o clique pra não clicar 2x
-
-        // Simula o carregamento e redireciona
-        setTimeout(() => {
-            window.location.href = link;
-        }, 2000); // 2 segundos de loading
+        btn.style.pointerEvents = 'none';
+        setTimeout(() => { window.location.href = link; }, 2000);
     }
 </script>
 
