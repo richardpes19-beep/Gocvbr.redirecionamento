@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallagher Logistics | South Side Chicago</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #000; color: #fff; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        .header { 
+            background: #0a0a0a; padding: 15px 20px; display: flex; 
+            align-items: center; justify-content: center; border-bottom: 2px solid #d4af37; 
+            position: relative; min-height: 80px; 
+        }
+        .header img { position: absolute; left: 15px; width: 65px; height: 65px; border-radius: 12px; object-fit: cover; }
+        .header strong { font-size: 18px; color: #d4af37; letter-spacing: 1px; text-transform: uppercase; }
+
+        .container { padding: 20px; max-width: 900px; margin: auto; min-height: 80vh; }
+
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        
+        .product-card { 
+            background: #0a0a0a; 
+            border: 1px solid #1a1a1a; 
+            border-radius: 12px; 
+            padding: 0; 
+            text-align: center; 
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .img-container {
+            width: 100%;
+            height: 200px; 
+            background: #000;
+            overflow: hidden;
+        }
+
+        .product-card img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: 0.5s;
+        }
+
+        .product-card:hover img { transform: scale(1.1); }
+
+        .product-info { padding: 15px; } 
+        .product-card h3 { font-size: 14px; color: #d4af37; margin: 0 0 5px; text-transform: uppercase; }
+        
+        .old-price { font-size: 12px; color: #666; text-decoration: line-through; margin-bottom: 2px; display: block; }
+        .price { color: #00ff00; font-weight: bold; font-size: 18px; margin-bottom: 2px; }
+        .tax-info { font-size: 10px; color: #ff4444; margin-bottom: 12px; font-weight: bold; text-transform: uppercase; }
+        
+        /* BOTÃO COM LOADING */
+        .btn-add-cart { 
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #d4af37; color: #000; padding: 12px; 
+            border-radius: 6px; font-size: 11px; text-transform: uppercase; 
+            font-weight: bold; cursor: pointer; border: none; width: 100%; 
+            min-height: 40px;
+        }
+
+        /* A BOLINHA CARREGANDO (SPINNER) */
+        .loader {
+            display: none; /* Escondido por padrão */
+            width: 18px;
+            height: 18px;
+            border: 3px solid #000;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            animation: rotation 1s linear infinite;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #welcome-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); display: flex; align-items: center; justify-content: center; z-index: 3000; }
+        .modal-content { background: #0d0d0d; border: 1px solid #333; width: 90%; max-width: 380px; padding: 40px 20px; border-radius: 15px; text-align: center; }
+        .modal-content img { width: 110px; height: 110px; border-radius: 15px; object-fit: cover; margin-bottom: 20px; }
+        .btn-enter { background: #d4af37; color: #000; padding: 18px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; text-transform: uppercase; width: 100%; }
+
+        footer { background: #0a0a0a; padding: 30px 20px; border-top: 1px solid #1a1a1a; text-align: center; margin-top: 50px; font-size: 10px; color: #444; }
+        
+        @media (max-width: 480px) { .product-grid { grid-template-columns: 1fr; } .img-container { height: 230px; } }
+    </style>
+</head>
+<body>
+
+<div id="welcome-modal">
+    <div class="modal-content">
+        <img src="carls.jpg" alt="Carl Gallagher">
+        <h2>BEM VINDO AO MAIOR SITE DA AMÉRICA</h2>
+        <button class="btn-enter" onclick="closeModal()">ACESSAR INVENTÁRIO</button>
+    </div>
+</div>
+
+<div class="header">
+    <img src="carl.jpg" alt="Carl"> 
+    <strong>𝑮𝑨𝑳𝑳𝑨𝑮𝑯𝑬𝑹'𝑺 𝑳𝑶𝑮𝑰𝑺𝑻𝑰𝑪𝑺</strong>
+</div>
+
+<div class="container">
+    <div class="product-grid">
+        <div class="product-card">
+            <div class="img-container"><img src="g25.jpg"></div>
+            <div class="product-info">
+                <h3>Glock G25 Tactical</h3>
+                <span class="old-price">R$ 3.800,00</span>
+                <div class="price">R$ 2.900,00</div>
+                <div class="tax-info">+ R$ 50,00 de impostos</div>
+                <button class="btn-add-cart" onclick="buyNow(this, 'produto-g25.html')">
+                    <span class="btn-text">COMPRAR AGORA</span>
+                    <div class="loader"></div>
+                </button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="img-container"><img src="glockg17.jpg"></div>
+            <div class="product-info">
+                <h3> Imbel MD1N.380 Monofilar </h3>
+                <span class="old-price">R$ 4.200,00</span>
+                <div class="price">R$ 3.500,00</div>
+                <div class="tax-info">+ R$ 50,00 de impostos</div>
+                <button class="btn-add-cart" onclick="buyNow(this, 'produto-32.html')">
+                    <span class="btn-text">COMPRAR AGORA</span>
+                    <div class="loader"></div>
+                </button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="img-container"><img src="cartucho.jpg"></div>
+            <div class="product-info">
+                <h3>50 Munições 9mm ou .380 ACP</h3>
+                <span class="old-price">R$ 450,00</span>
+                <div class="price">R$ 258,00</div>
+                <div class="tax-info">+ R$ 50,00 de impostos</div>
+                <button class="btn-add-cart" onclick="buyNow(this, 'produto-g19.html')">
+                    <span class="btn-text">COMPRAR AGORA</span>
+                    <div class="loader"></div>
+                </button>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="img-container"><img src="glock9mm.jpg"></div>
+            <div class="product-info">
+                <h3>Glock 19 9mm</h3>
+                <span class="old-price">R$ 4.500,00</span>
+                <div class="price">R$ 3.200,00</div>
+                <div class="tax-info">+ R$ 50,00 de impostos</div>
+                <button class="btn-add-cart" onclick="buyNow(this, 'produto-g19-high.html')">
+                    <span class="btn-text">COMPRAR AGORA</span>
+                    <div class="loader"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>© 2026 GALLAGHER LOGISTICS - CHICAGO SOUTH SIDE DIVISION</footer>
+
+<script>
+    function closeModal() { document.getElementById('welcome-modal').style.display = 'none'; }
+
+    function buyNow(btn, link) {
+        const text = btn.querySelector('.btn-text');
+        const loader = btn.querySelector('.loader');
+
+        // Esconde o texto e mostra a bolinha
+        text.style.display = 'none';
+        loader.style.display = 'block';
+        btn.style.pointerEvents = 'none'; // Trava o clique pra não clicar 2x
+
+        // Simula o carregamento e redireciona
+        setTimeout(() => {
+            window.location.href = link;
+        }, 2000); // 2 segundos de loading
+    }
+</script>
+
+</body>
+</html>
