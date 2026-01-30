@@ -32,7 +32,7 @@
 
         .img-container {
             width: 100%;
-            height: 170px; 
+            height: 200px; 
             background: #000;
             overflow: hidden;
         }
@@ -86,11 +86,12 @@
 
         footer { background: #0a0a0a; padding: 30px 20px; border-top: 1px solid #1a1a1a; text-align: center; margin-top: 50px; font-size: 10px; color: #444; }
         
-        /* AJUSTE PARA NÃO ESPREMER EM CELULARES DIFERENTES */
+        /* SOLUÇÃO PARA NÃO ESPREMER/ESTICAR */
         @media (max-width: 600px) { 
-            .product-grid { grid-template-columns: 1fr; } /* Uma arma por linha em telas menores */
-            .img-container { height: 250px; } 
-            .header strong { font-size: 14px; } /* Diminui o texto do topo pra não quebrar */
+            .product-grid { grid-template-columns: 1fr; gap: 20px; } 
+            .img-container { height: auto; min-height: 200px; } /* Ajuste automático da altura */
+            .product-card img { object-fit: contain; background: #000; } /* Garante que a arma apareça inteira sem corte */
+            .header strong { font-size: 13px; }
         }
     </style>
 </head>
