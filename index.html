@@ -15,24 +15,25 @@
         .header img { position: absolute; left: 15px; width: 65px; height: 65px; border-radius: 12px; object-fit: cover; }
         .header strong { font-size: 18px; color: #d4af37; letter-spacing: 1px; text-transform: uppercase; }
 
-        .container { padding: 20px; max-width: 900px; margin: auto; min-height: 80vh; }
+        .container { padding: 15px; max-width: 900px; margin: auto; min-height: 80vh; }
 
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        /* Diminuí o gap para ganhar espaço */
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
         
         .product-card { 
             background: #0a0a0a; 
             border: 1px solid #1a1a1a; 
-            border-radius: 12px; 
-            padding: 0; 
+            border-radius: 10px; 
             text-align: center; 
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
+        /* DIMINUIÇÃO DO CARD: Altura da imagem menor para DPIs diferentes */
         .img-container {
             width: 100%;
-            height: 200px; 
+            height: 160px; /* Reduzi de 200px para 160px */
             background: #000;
             overflow: hidden;
         }
@@ -44,30 +45,28 @@
             transition: 0.5s;
         }
 
-        .product-card:hover img { transform: scale(1.1); }
-
-        .product-info { padding: 15px; } 
-        .product-card h3 { font-size: 14px; color: #d4af37; margin: 0 0 5px; text-transform: uppercase; }
+        .product-info { padding: 10px; } /* Menos padding interno */
+        .product-card h3 { font-size: 12px; color: #d4af37; margin: 0 0 5px; text-transform: uppercase; }
         
-        .old-price { font-size: 12px; color: #666; text-decoration: line-through; margin-bottom: 2px; display: block; }
-        .price { color: #00ff00; font-weight: bold; font-size: 18px; margin-bottom: 2px; }
-        .tax-info { font-size: 10px; color: #ff4444; margin-bottom: 12px; font-weight: bold; text-transform: uppercase; }
+        .old-price { font-size: 10px; color: #666; text-decoration: line-through; display: block; }
+        .price { color: #00ff00; font-weight: bold; font-size: 16px; margin-bottom: 2px; }
+        .tax-info { font-size: 9px; color: #ff4444; margin-bottom: 8px; font-weight: bold; text-transform: uppercase; }
         
         .btn-add-cart { 
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #d4af37; color: #000; padding: 12px; 
-            border-radius: 6px; font-size: 11px; text-transform: uppercase; 
+            background: #d4af37; color: #000; padding: 10px; 
+            border-radius: 6px; font-size: 10px; text-transform: uppercase; 
             font-weight: bold; cursor: pointer; border: none; width: 100%; 
-            min-height: 40px;
+            min-height: 35px;
         }
 
         .loader {
             display: none; 
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             border: 3px solid #000;
             border-bottom-color: transparent;
             border-radius: 50%;
@@ -80,18 +79,18 @@
         }
 
         #welcome-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); display: flex; align-items: center; justify-content: center; z-index: 3000; }
-        .modal-content { background: #0d0d0d; border: 1px solid #333; width: 90%; max-width: 380px; padding: 40px 20px; border-radius: 15px; text-align: center; }
-        .modal-content img { width: 110px; height: 110px; border-radius: 15px; object-fit: cover; margin-bottom: 20px; }
-        .btn-enter { background: #d4af37; color: #000; padding: 18px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; text-transform: uppercase; width: 100%; }
+        .modal-content { background: #0d0d0d; border: 1px solid #333; width: 90%; max-width: 320px; padding: 30px 20px; border-radius: 15px; text-align: center; }
+        .modal-content img { width: 90px; height: 90px; border-radius: 15px; object-fit: cover; margin-bottom: 15px; }
+        .btn-enter { background: #d4af37; color: #000; padding: 15px; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; text-transform: uppercase; width: 100%; }
 
-        footer { background: #0a0a0a; padding: 30px 20px; border-top: 1px solid #1a1a1a; text-align: center; margin-top: 50px; font-size: 10px; color: #444; }
+        footer { background: #0a0a0a; padding: 20px; border-top: 1px solid #1a1a1a; text-align: center; margin-top: 40px; font-size: 9px; color: #444; }
         
-        /* SOLUÇÃO PARA NÃO ESPREMER/ESTICAR */
-        @media (max-width: 600px) { 
-            .product-grid { grid-template-columns: 1fr; gap: 20px; } 
-            .img-container { height: auto; min-height: 200px; } /* Ajuste automático da altura */
-            .product-card img { object-fit: contain; background: #000; } /* Garante que a arma apareça inteira sem corte */
-            .header strong { font-size: 13px; }
+        /* Ajuste fino para mobile com DPI alta */
+        @media (max-width: 480px) { 
+            .product-grid { grid-template-columns: 1fr 1fr; } /* Mantém 2 colunas, mas cards menores */
+            .img-container { height: 140px; } 
+            .product-card h3 { font-size: 11px; }
+            .price { font-size: 15px; }
         }
     </style>
 </head>
@@ -100,7 +99,7 @@
 <div id="welcome-modal">
     <div class="modal-content">
         <img src="carls.jpg" alt="Carl Gallagher">
-        <h2>BEM VINDO AO MAIOR SITE DA AMÉRICA</h2>
+        <h2>BEM VINDO</h2>
         <button class="btn-enter" onclick="closeModal()">ACESSAR INVENTÁRIO</button>
     </div>
 </div>
@@ -116,11 +115,11 @@
             <div class="img-container"><img src="g25.jpg"></div>
             <div class="product-info">
                 <h3>Glock G25 Tactical</h3>
-                <span class="old-price">R$ 3.800,00</span>
-                <div class="price">R$ 2.900,00</div>
-                <div class="tax-info">+ R$ 50,00 de impostos</div>
+                <span class="old-price">R$ 3.800</span>
+                <div class="price">R$ 2.900</div>
+                <div class="tax-info">+ R$ 50 taxa</div>
                 <button class="btn-add-cart" onclick="buyNow(this, 'produto-g25.html')">
-                    <span class="btn-text">COMPRAR AGORA</span>
+                    <span class="btn-text">COMPRAR</span>
                     <div class="loader"></div>
                 </button>
             </div>
@@ -129,12 +128,12 @@
         <div class="product-card">
             <div class="img-container"><img src="glockg17.jpg"></div>
             <div class="product-info">
-                <h3> Imbel MD1N.380 Monofilar </h3>
-                <span class="old-price">R$ 4.200,00</span>
-                <div class="price">R$ 3.500,00</div>
-                <div class="tax-info">+ R$ 50,00 de impostos</div>
+                <h3>Imbel MD1N .380</h3>
+                <span class="old-price">R$ 4.200</span>
+                <div class="price">R$ 3.500</div>
+                <div class="tax-info">+ R$ 50 taxa</div>
                 <button class="btn-add-cart" onclick="buyNow(this, 'produto-32.html')">
-                    <span class="btn-text">COMPRAR AGORA</span>
+                    <span class="btn-text">COMPRAR</span>
                     <div class="loader"></div>
                 </button>
             </div>
@@ -143,12 +142,12 @@
         <div class="product-card">
             <div class="img-container"><img src="cartucho.jpg"></div>
             <div class="product-info">
-                <h3>50 Munições 9mm ou .380 ACP</h3>
-                <span class="old-price">R$ 450,00</span>
-                <div class="price">R$ 258,00</div>
-                <div class="tax-info">+ R$ 50,00 de impostos</div>
+                <h3>50 Munições</h3>
+                <span class="old-price">R$ 450</span>
+                <div class="price">R$ 258</div>
+                <div class="tax-info">+ R$ 50 taxa</div>
                 <button class="btn-add-cart" onclick="buyNow(this, 'produto-g19.html')">
-                    <span class="btn-text">COMPRAR AGORA</span>
+                    <span class="btn-text">COMPRAR</span>
                     <div class="loader"></div>
                 </button>
             </div>
@@ -158,11 +157,11 @@
             <div class="img-container"><img src="glock9mm.jpg"></div>
             <div class="product-info">
                 <h3>Glock 19 9mm</h3>
-                <span class="old-price">R$ 4.500,00</span>
-                <div class="price">R$ 3.200,00</div>
-                <div class="tax-info">+ R$ 50,00 de impostos</div>
+                <span class="old-price">R$ 4.500</span>
+                <div class="price">R$ 3.200</div>
+                <div class="tax-info">+ R$ 50 taxa</div>
                 <button class="btn-add-cart" onclick="buyNow(this, 'produto-g19-high.html')">
-                    <span class="btn-text">COMPRAR AGORA</span>
+                    <span class="btn-text">COMPRAR</span>
                     <div class="loader"></div>
                 </button>
             </div>
@@ -170,11 +169,10 @@
     </div>
 </div>
 
-<footer>© 2026 GALLAGHER LOGISTICS - CHICAGO SOUTH SIDE DIVISION</footer>
+<footer>© 2026 GALLAGHER LOGISTICS</footer>
 
 <script>
     function closeModal() { document.getElementById('welcome-modal').style.display = 'none'; }
-
     function buyNow(btn, link) {
         const text = btn.querySelector('.btn-text');
         const loader = btn.querySelector('.loader');
